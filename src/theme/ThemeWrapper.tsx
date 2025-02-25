@@ -6,6 +6,34 @@ import { ReactNode } from "react";
 const theme = () => {
   return createTheme({
     spacing: (factor: number) => `${0.75 * factor}rem`,
+    components: {
+      MuiTextField: {
+        styleOverrides: {
+          root: {
+            "& .MuiInputBase-root": {
+              borderRadius: "1rem",
+            },
+          },
+        },
+      },
+      MuiChip: {
+        styleOverrides: {
+          root: {
+            width: "fit-content",
+          },
+        },
+      },
+      MuiButton: {
+        defaultProps: {
+          variant: "contained",
+        },
+        styleOverrides: {
+          root: {
+            width: "fit-content",
+          },
+        },
+      },
+    },
   });
 };
 

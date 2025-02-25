@@ -18,3 +18,8 @@ export async function products() {
   const res = await fetch(`${Base}products`);
   return await ReturnConfig(res);
 }
+
+export async function productDetails(id: string) {
+  const res = await fetch(`${Base}products/${id}`);
+  return await ReturnConfig(res);
+}

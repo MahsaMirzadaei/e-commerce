@@ -3,6 +3,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import StoreProvider from "@/libs/redux/StoreProvider";
 import ThemeWrapper from "@/theme/ThemeWrapper";
+import { AppBar, Button, Container, Toolbar, Typography } from "@mui/material";
+import Image from "next/image";
+import { img } from "@/constants/images";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,7 +31,28 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <ThemeWrapper>
-          <StoreProvider>{children}</StoreProvider>
+          <StoreProvider>
+            <AppBar position="fixed" sx={{ backgroundColor: "text.primary" }}>
+              <Toolbar>
+                <Typography variant="h6" sx={{ flexGrow: 1 }}>
+                  Itoll E-Commerce
+                </Typography>
+                <Button variant="text">
+                  <Image
+                    src={img.logo}
+                    alt="logo"
+                    width={50}
+                    height={50}
+                    layout="intrinsic"
+                    priority={false}
+                  />
+                </Button>
+              </Toolbar>
+            </AppBar>
+            <Container maxWidth="xl" sx={{ p: 2, pt: 5 }}>
+              {children}
+            </Container>
+          </StoreProvider>
         </ThemeWrapper>
       </body>
     </html>

@@ -6,13 +6,13 @@ import {
   Box,
   Card,
   CardActionArea,
-  Container,
   Stack,
   SxProps,
   TextField,
   Typography,
 } from "@mui/material";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 const CardActionAreaSx: SxProps = {
@@ -30,6 +30,7 @@ interface Props {
 
 const ProductsContainer = ({ products }: Props) => {
   const dispatch = useAppDispatch();
+  const router = useRouter();
 
   const { productsList } = useAppSelector((state) => state.product);
 
@@ -42,14 +43,14 @@ const ProductsContainer = ({ products }: Props) => {
   }, [products]);
 
   useEffect(() => {
-    if (searchText.length > 3) {
+    if (searchText.length > 1) {
       const timeout = setTimeout(() => {
         setFilteredProducts(
           productsList.filter((item) =>
             item.title.toLowerCase().includes(searchText.toLowerCase())
           )
         );
-      }, 300);
+      }, 2000);
       return () => clearTimeout(timeout);
     } else if (searchText === "") {
       setFilteredProducts(productsList);
@@ -57,13 +58,12 @@ const ProductsContainer = ({ products }: Props) => {
   }, [searchText, productsList]);
 
   return (
-    <Container maxWidth="lg" sx={{ p: 2 }}>
+    <>
       <TextField
-        id="outlined-basic"
         label="Search product"
         variant="outlined"
         value={searchText}
-        sx={{ width: "100%", m: 2 }}
+        sx={{ width: "100%", my: 2 }}
         onChange={(e) => setSearchText(e.target.value)}
       />
       <Stack direction="row" flexWrap="wrap" gap={2} justifyContent="center">
@@ -76,23 +76,29 @@ const ProductsContainer = ({ products }: Props) => {
                 minHeight: 450,
               }}
             >
-              <CardActionArea sx={CardActionAreaSx}>
+              <CardActionArea
+                sx={CardActionAreaSx}
+                onClick={() => {
+                  router.push(`/${item.id}`);
+                }}
+              >
                 <Box sx={{ display: "flex", justifyContent: "center", py: 1 }}>
                   <Image
                     src={item.image}
                     alt={item.title}
                     width={150}
                     height={150}
+                    priority={false}
                   />
                 </Box>
-                <Typography gutterBottom variant="h5" component="div">
+                <Typography gutterBottom variant="h6">
                   {item.title}
                 </Typography>
-                <Typography variant="body2" sx={{ color: "text.secondary" }}>
+                <Typography variant="caption" sx={{ color: "text.secondary" }}>
                   {item.description}
                 </Typography>
                 <Typography
-                  variant="h5"
+                  variant="h6"
                   sx={{ color: "primary.main", alignSelf: "start" }}
                 >
                   Price : {item.price} $
@@ -106,7 +112,7 @@ const ProductsContainer = ({ products }: Props) => {
           </Typography>
         )}
       </Stack>
-    </Container>
+    </>
   );
 };
 
