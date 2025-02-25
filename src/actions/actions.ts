@@ -1,15 +1,18 @@
 const Base = "https://fakestoreapi.com/";
 
-export const ReturnConfig = async (res: any) => {
+export const ReturnConfig = async (res: Response) => {
   try {
+    const data = await res.json();
     if (res.ok) {
-      return res.json();
+      if (data) {
+        return data;
+      }
     } else {
-      const errorData = await res.json();
-      throw new Error(errorData.errorMessage || "An error occurred");
+      console.error(data);
+      throw new Error("Oops! someThing went wrong.");
     }
-  } catch (error: any) {
-    return { error: error.message };
+  } catch (error: unknown) {
+    throw new Error("Oops! someThing went wrong.");
   }
 };
 

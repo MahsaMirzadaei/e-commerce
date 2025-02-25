@@ -23,9 +23,9 @@ const ProductDetials = async ({ params }: Props) => {
     >
       <Box
         sx={{
-          width: "fit-content",
+          width: { xs: "15rem", lg: "30vw" },
           maxWidth: "20rem",
-          height: "auto",
+          height: "20rem",
           position: "relative",
           display: "block",
           margin: "auto",
@@ -34,10 +34,9 @@ const ProductDetials = async ({ params }: Props) => {
         <Image
           src={details.image}
           alt={details.title}
-          layout="intrinsic"
-          width={400}
-          height={400}
-          objectFit="contain"
+          fill
+          sizes="(max-width: 1200px) 15rem, 30vw"
+          style={{ objectFit: "contain" }}
           priority={false}
         />
       </Box>

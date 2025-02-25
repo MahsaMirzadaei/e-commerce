@@ -82,12 +82,21 @@ const ProductsContainer = ({ products }: Props) => {
                   router.push(`/${item.id}`);
                 }}
               >
-                <Box sx={{ display: "flex", justifyContent: "center", py: 1 }}>
+                <Box
+                  sx={{
+                    width: "10rem",
+                    height: "10rem",
+                    position: "relative",
+                    display: "block",
+                    margin: "auto",
+                  }}
+                >
                   <Image
                     src={item.image}
                     alt={item.title}
-                    width={150}
-                    height={150}
+                    fill
+                    sizes="10rem"
+                    style={{ objectFit: "contain" }}
                     priority={false}
                   />
                 </Box>

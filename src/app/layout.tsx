@@ -6,6 +6,8 @@ import ThemeWrapper from "@/theme/ThemeWrapper";
 import { AppBar, Button, Container, Toolbar, Typography } from "@mui/material";
 import Image from "next/image";
 import { img } from "@/constants/images";
+import { ErrorBoundary } from "next/dist/client/components/error-boundary";
+import Error from "./error";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -43,14 +45,13 @@ export default function RootLayout({
                     alt="logo"
                     width={50}
                     height={50}
-                    layout="intrinsic"
                     priority={false}
                   />
                 </Button>
               </Toolbar>
             </AppBar>
             <Container maxWidth="xl" sx={{ p: 2, pt: 5 }}>
-              {children}
+              <ErrorBoundary errorComponent={Error}>{children}</ErrorBoundary>
             </Container>
           </StoreProvider>
         </ThemeWrapper>
