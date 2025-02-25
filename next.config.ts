@@ -4,6 +4,8 @@ const withPWA = require("next-pwa")({
   dest: "public",
   runtimeCaching: [
     {
+      urlPattern:
+        /^https:\/\/e-commerce-five-blond\.vercel\.app(\/.*)?$|^http:\/\/localhost:\d+(\/.*)?$/,
       handler: "NetworkFirst",
       options: {
         cacheName: "api-cache",
