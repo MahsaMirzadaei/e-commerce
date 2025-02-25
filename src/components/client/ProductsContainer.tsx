@@ -38,19 +38,20 @@ const ProductsContainer = ({ products }: Props) => {
   const [searchText, setSearchText] = useState<string>("");
 
   useEffect(() => {
-    dispatch(setProducts(products));
     setFilteredProducts(productsList);
+    dispatch(setProducts(products));
   }, [products]);
 
   useEffect(() => {
     if (searchText.length > 1) {
+      // debouncing ...
       const timeout = setTimeout(() => {
         setFilteredProducts(
           productsList.filter((item) =>
             item.title.toLowerCase().includes(searchText.toLowerCase())
           )
         );
-      }, 2000);
+      }, 1500);
       return () => clearTimeout(timeout);
     } else if (searchText === "") {
       setFilteredProducts(productsList);
@@ -97,6 +98,7 @@ const ProductsContainer = ({ products }: Props) => {
                     fill
                     sizes="10rem"
                     style={{ objectFit: "contain" }}
+                    // lazy loading ...
                     priority={false}
                   />
                 </Box>
