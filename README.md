@@ -22,7 +22,12 @@ npm start
 
 The production server will be available at [http://localhost:3000](http://localhost:3000).
 
-## Features & Architecture
+## 🌍 Visit Demo
+
+You can check out the deployed project on Vercel:
+🔗 [Live Demo](https://e-commerce-five-blond.vercel.app/)
+
+## 📌 Features & Architecture
 
 - Implemented debouncing on the homepage to enhance search performance and reduce unnecessary re-renders.
 
