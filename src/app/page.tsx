@@ -4,11 +4,8 @@ import { products } from "../actions/actions";
 export default async function Home() {
   // api
   const productsList = await products();
+  // const productsList: any[] = [];
 
-  console.log(productsList);
-  return (
-    <div>
-      <ProductsContainer products={productsList} />
-    </div>
-  );
+  // console.log(productsList);
+  return <ProductsContainer products={productsList} />;
 }
