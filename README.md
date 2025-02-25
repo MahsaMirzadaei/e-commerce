@@ -16,7 +16,7 @@ To build and start the production server:
 
 ```bash
 npm run build
-# then
+
 npm start
 ```
 
