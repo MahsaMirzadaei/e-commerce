@@ -5,6 +5,8 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 First, run the development server:
 
 ```bash
+npm install
+
 npm run dev
 ```
 
@@ -15,6 +17,8 @@ Open [http://localhost:5000](http://localhost:5000) with your browser to see the
 To build and start the production server:
 
 ```bash
+npm install
+
 npm run build
 
 npm start
@@ -22,7 +26,12 @@ npm start
 
 The production server will be available at [http://localhost:3000](http://localhost:3000).
 
-## Features & Architecture
+## 🌍 Visit Demo
+
+You can check out the deployed project on Vercel:
+🔗 [Live Demo](https://e-commerce-five-blond.vercel.app/)
+
+## 📌 Features & Architecture
 
 - Implemented debouncing on the homepage to enhance search performance and reduce unnecessary re-renders.
 

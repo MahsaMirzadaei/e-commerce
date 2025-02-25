@@ -5,42 +5,34 @@ import { Product } from "@/types/products.type";
 import { Stack, TextField, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
+import { useDebouncedValue } from "@/hooks/useDebouncedValue";
 
 interface Props {
   products: Product[];
 }
 
+// In React 19, useMemo and useCallback are no longer needed
 const ProductsContainer = ({ products }: Props) => {
   const dispatch = useAppDispatch();
 
   const { productsList } = useAppSelector((state) => state.product);
 
-  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [searchText, setSearchText] = useState<string>("");
 
-  // conditions
-  const noProduct = searchText?.length > 0 && filteredProducts.length === 0;
+  const debouncedSearchText = useDebouncedValue(searchText, 1500);
+  const filteredProducts =
+    debouncedSearchText.length > 0
+      ? productsList.filter((item) =>
+          item.title.toLowerCase().includes(debouncedSearchText.toLowerCase())
+        )
+      : productsList;
 
   useEffect(() => {
-    setFilteredProducts(products);
     dispatch(setProducts(products));
   }, [products]);
 
-  useEffect(() => {
-    if (searchText.length > 1) {
-      // debouncing ...
-      const timeout = setTimeout(() => {
-        setFilteredProducts(
-          productsList.filter((item) =>
-            item.title.toLowerCase().includes(searchText.toLowerCase())
-          )
-        );
-      }, 1500);
-      return () => clearTimeout(timeout);
-    } else if (searchText === "") {
-      setFilteredProducts(productsList);
-    }
-  }, [searchText, productsList]);
+  // conditions
+  const noProduct = searchText?.length > 0 && filteredProducts.length === 0;
 
   return (
     <>
