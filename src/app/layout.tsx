@@ -1,13 +1,9 @@
 import type { Metadata } from "next";
 import "../styles/globals.css";
-import StoreProvider from "@/libs/redux/StoreProvider";
-import ThemeWrapper from "@/theme/ThemeWrapper";
-import { AppBar, Container, Toolbar, Typography } from "@mui/material";
-import Image from "next/image";
-import { img } from "@/constants/images";
+
 import { ErrorBoundary } from "next/dist/client/components/error-boundary";
 import Error from "./error";
-import Link from "next/link";
+import ClientWrapper from "@/components/client/layout/ClientWrapper";
 
 export const metadata: Metadata = {
   title: "Itoll e-commerce",
@@ -22,29 +18,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <ThemeWrapper>
-          <StoreProvider>
-            <AppBar position="fixed" sx={{ backgroundColor: "text.primary" }}>
-              <Toolbar>
-                <Typography variant="h6" sx={{ flexGrow: 1 }}>
-                  Itoll E-Commerce
-                </Typography>
-                <Link href="/">
-                  <Image
-                    src={img.logo}
-                    alt="logo"
-                    width={50}
-                    height={50}
-                    priority={false}
-                  />
-                </Link>
-              </Toolbar>
-            </AppBar>
-            <Container maxWidth="xl" sx={{ p: 2, pt: 5 }}>
-              <ErrorBoundary errorComponent={Error}>{children}</ErrorBoundary>
-            </Container>
-          </StoreProvider>
-        </ThemeWrapper>
+        <ClientWrapper>
+          <ErrorBoundary errorComponent={Error}>{children}</ErrorBoundary>
+        </ClientWrapper>
       </body>
     </html>
   );

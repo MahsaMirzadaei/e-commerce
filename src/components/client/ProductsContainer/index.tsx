@@ -18,8 +18,11 @@ const ProductsContainer = ({ products }: Props) => {
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [searchText, setSearchText] = useState<string>("");
 
+  // conditions
+  const noProduct = searchText?.length > 0 && filteredProducts.length === 0;
+
   useEffect(() => {
-    setFilteredProducts(productsList);
+    setFilteredProducts(products);
     dispatch(setProducts(products));
   }, [products]);
 
@@ -49,15 +52,15 @@ const ProductsContainer = ({ products }: Props) => {
         onChange={(e) => setSearchText(e.target.value)}
       />
       <Stack direction="row" flexWrap="wrap" gap={2} justifyContent="center">
-        {filteredProducts?.length > 0 ? (
-          filteredProducts?.map((item) => (
-            <ProductCard product={item} key={item.id} />
-          ))
-        ) : (
-          <Typography variant="h5" sx={{ color: "text.secondary", p: 2 }}>
-            No product found
-          </Typography>
-        )}
+        {filteredProducts?.length > 0
+          ? filteredProducts?.map((item) => (
+              <ProductCard product={item} key={item.id} />
+            ))
+          : noProduct && (
+              <Typography variant="h5" sx={{ color: "text.secondary", p: 2 }}>
+                No product found
+              </Typography>
+            )}
       </Stack>
     </>
   );
