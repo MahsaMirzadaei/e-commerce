@@ -1,0 +1,30 @@
+{
+  "name": "Itoll",
+  "short_name": "E-Commerce",
+  "description": "Itoll E-Commerce",
+  "theme_color": "#fff",
+  "background_color": "#fff",
+  "icons": [
+    {
+      "src": "/app-icons/512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "density": "4.0"
+    },
+    {
+      "src": "/app-icons/192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "density": "4.0"
+    },
+    {
+      "src": "/app-icons/256.png",
+      "sizes": "256x256",
+      "type": "image/png",
+      "density": "4.0"
+    }
+  ],
+  "display": "standalone",
+  "orientation": "portrait",
+  "start_url": "/"
+}

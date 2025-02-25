@@ -5,6 +5,8 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 First, run the development server:
 
 ```bash
+npm install
+
 npm run dev
 ```
 
@@ -15,6 +17,8 @@ Open [http://localhost:5000](http://localhost:5000) with your browser to see the
 To build and start the production server:
 
 ```bash
+npm install
+
 npm run build
 
 npm start
