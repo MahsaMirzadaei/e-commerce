@@ -1,17 +1,9 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import StoreProvider from "@/libs/redux/StoreProvider";
+import "../styles/globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import { ErrorBoundary } from "next/dist/client/components/error-boundary";
+import Error from "./error";
+import ClientWrapper from "@/components/client/layout/ClientWrapper";
 
 export const metadata: Metadata = {
   title: "Itoll e-commerce",
@@ -25,8 +17,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <StoreProvider>{children}</StoreProvider>
+      <body>
+        <ClientWrapper>
+          <ErrorBoundary errorComponent={Error}>{children}</ErrorBoundary>
+        </ClientWrapper>
       </body>
     </html>
   );

@@ -1,20 +1,29 @@
 const Base = "https://fakestoreapi.com/";
 
-export const ReturnConfig = async (res: any) => {
+export const ReturnConfig = async (res: Response) => {
   try {
+    const data = await res.json();
     if (res.ok) {
-      return res.json();
+      if (data) {
+        return data;
+      }
     } else {
-      const errorData = await res.json();
-      throw new Error(errorData.errorMessage || "An error occurred");
+      console.error(data);
+      throw new Error("Oops! someThing went wrong.");
     }
-  } catch (error: any) {
-    return { error: error.message };
+  } catch (error: unknown) {
+    console.error(error);
+    throw new Error("Oops! someThing went wrong.");
   }
 };
 
 // ----------------------------------- server routes ----------------------------------
 export async function products() {
   const res = await fetch(`${Base}products`);
+  return await ReturnConfig(res);
+}
+
+export async function productDetails(id: string) {
+  const res = await fetch(`${Base}products/${id}`);
   return await ReturnConfig(res);
 }
