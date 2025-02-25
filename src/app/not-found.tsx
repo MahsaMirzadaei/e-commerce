@@ -1,7 +1,7 @@
 "use client";
-import { Box } from "@mui/material";
 import Link from "next/link";
 import { useEffect } from "react";
+import "./globals.css";
 
 export default function NotFound({
   error,
@@ -13,18 +13,7 @@ export default function NotFound({
   }, [error]);
 
   return (
-    <div
-      style={{
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "column",
-        gap: "2rem",
-        marginTop: "5rem",
-      }}
-    >
+    <div className="error-container">
       <h1>404 - Page Not Found</h1>
       <Link href="/">Go back Home</Link>
     </div>

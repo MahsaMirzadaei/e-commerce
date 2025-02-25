@@ -5,6 +5,19 @@ import { Box, Button, Chip, Divider, Typography } from "@mui/material";
 import Image from "next/image";
 import React from "react";
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ productDetails: string }>;
+}) {
+  const { productDetails: id } = await params;
+  const details = await productDetails(id);
+
+  return {
+    title: details.title,
+  };
+}
+
 interface Props {
   params: Promise<{ productDetails: string }>;
 }
