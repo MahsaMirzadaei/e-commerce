@@ -15,7 +15,7 @@ export default function Error({
 
   return (
     <Box className="error-container">
-      <Typography variant="h6"> 404 : {error.message}</Typography>
+      <Typography variant="h6"> 404 : Oops! someThing went wrong.</Typography>
       <Link href="/">Go back Home</Link>
     </Box>
   );

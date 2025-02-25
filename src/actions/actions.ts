@@ -12,6 +12,7 @@ export const ReturnConfig = async (res: Response) => {
       throw new Error("Oops! someThing went wrong.");
     }
   } catch (error: unknown) {
+    console.error(error);
     throw new Error("Oops! someThing went wrong.");
   }
 };
