@@ -1,6 +1,6 @@
 "use client";
 import { CircularProgress } from "@mui/material";
-import "./globals.css";
+import "../styles/globals.css";
 import React from "react";
 
 const LoadingSpinner = () => {

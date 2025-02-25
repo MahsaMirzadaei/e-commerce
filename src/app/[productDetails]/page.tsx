@@ -1,5 +1,11 @@
 import { productDetails } from "@/actions/actions";
 import CardBox from "@/components/UI/CardBox";
+import {
+  containerBoxSx,
+  imgBoxSx,
+  infoSx,
+  verticalDividerSx,
+} from "@/components/client/productDetails/styles";
 import { Product } from "@/types/products.type";
 import { Box, Button, Chip, Divider, Typography } from "@mui/material";
 import Image from "next/image";
@@ -27,23 +33,8 @@ const ProductDetials = async ({ params }: Props) => {
   const details: Product = await productDetails(id);
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: { xs: "column", lg: "row" },
-        mt: 3,
-      }}
-    >
-      <Box
-        sx={{
-          width: { xs: "15rem", lg: "30vw" },
-          maxWidth: "20rem",
-          height: "20rem",
-          position: "relative",
-          display: "block",
-          margin: "auto",
-        }}
-      >
+    <Box sx={containerBoxSx}>
+      <Box sx={imgBoxSx}>
         <Image
           src={details.image}
           alt={details.title}
@@ -54,21 +45,20 @@ const ProductDetials = async ({ params }: Props) => {
         />
       </Box>
 
-      <Divider
-        sx={{ height: "auto", mx: 2, display: { xs: "none", md: "block" } }}
-        orientation="vertical"
-      />
+      <Divider sx={verticalDividerSx} orientation="vertical" />
 
       {/* ---------------------------------------- info */}
-      <Box sx={{ display: "flex", flexDirection: "column", gap: 1, mt: 3 }}>
+      <Box sx={infoSx}>
         <Typography gutterBottom variant="h5">
           {details.title}
         </Typography>
         <Chip label={details.category} variant="outlined" />
+        {/* create reusable ui component ...*/}
         <CardBox surface sx={{ width: "90%", my: 2 }}>
           {details.description}
         </CardBox>
-        {/* ---------------------------------------- price */}
+
+        {/* ---------------- price */}
         <Typography variant="h5" fontWeight="bold" color="primary.main">
           {details.price} $
         </Typography>

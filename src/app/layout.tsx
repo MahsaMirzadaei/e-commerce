@@ -1,23 +1,13 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import "../styles/globals.css";
 import StoreProvider from "@/libs/redux/StoreProvider";
 import ThemeWrapper from "@/theme/ThemeWrapper";
-import { AppBar, Button, Container, Toolbar, Typography } from "@mui/material";
+import { AppBar, Container, Toolbar, Typography } from "@mui/material";
 import Image from "next/image";
 import { img } from "@/constants/images";
 import { ErrorBoundary } from "next/dist/client/components/error-boundary";
 import Error from "./error";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Itoll e-commerce",
@@ -31,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body>
         <ThemeWrapper>
           <StoreProvider>
             <AppBar position="fixed" sx={{ backgroundColor: "text.primary" }}>
@@ -39,7 +29,7 @@ export default function RootLayout({
                 <Typography variant="h6" sx={{ flexGrow: 1 }}>
                   Itoll E-Commerce
                 </Typography>
-                <Button variant="text">
+                <Link href="/">
                   <Image
                     src={img.logo}
                     alt="logo"
@@ -47,7 +37,7 @@ export default function RootLayout({
                     height={50}
                     priority={false}
                   />
-                </Button>
+                </Link>
               </Toolbar>
             </AppBar>
             <Container maxWidth="xl" sx={{ p: 2, pt: 5 }}>
