@@ -1,8 +1,11 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+## 🚀 Setting Up & Running the Development Server
 
-First, run the development server:
+1️⃣ Create an .env File
+Begin by creating a .env file in the root of your project and adding your environment variables same as .env.production
+
+run the development server:
 
 ```bash
 npm install
@@ -42,3 +45,5 @@ You can check out the deployed project on Vercel:
 - API calls are handled in server actions, ensuring optimal performance by fetching data on the server.
 
 - Integrated Redux Toolkit as an example of state management configuration, although not strictly required due to server actions handling state in this case.
+
+- Integrated the ducanh2912/next-pwa package to enable PWA functionality and efficiently cache routes.
