@@ -1,4 +1,4 @@
-const Base = "https://fakestoreapi.com/";
+const Base = process.env.API_BASE;
 
 export const ReturnConfig = async (res: Response) => {
   try {
