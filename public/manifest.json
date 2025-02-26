@@ -2,8 +2,8 @@
   "name": "Itoll",
   "short_name": "E-Commerce",
   "description": "Itoll E-Commerce",
-  "theme_color": "#000",
-  "background_color": "#000",
+  "theme_color": "#fff",
+  "background_color": "#fff",
   "icons": [
     {
       "src": "/app-icons/512.png",
