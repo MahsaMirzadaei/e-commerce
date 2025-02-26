@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## 🚀 Setting Up & Running the Development Server
 
-1️⃣ Create an .env File
+Create an .env File
 Begin by creating a .env file in the root of your project and adding your environment variables same as .env.production
 
 run the development server:
