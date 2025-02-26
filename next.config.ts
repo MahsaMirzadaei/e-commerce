@@ -1,23 +1,10 @@
 import type { NextConfig } from "next";
 
-const withPWA = require("next-pwa")({
+const withPWA = require("@ducanh2912/next-pwa").default({
   dest: "public",
-  runtimeCaching: [
-    {
-      urlPattern:
-        /^https:\/\/e-commerce-five-blond\.vercel\.app(\/.*)?$|^http:\/\/localhost:\d+(\/.*)?$/,
-      handler: "NetworkFirst",
-      options: {
-        cacheName: "api-cache",
-        expiration: {
-          maxAgeSeconds: 60 * 60 * 24, // 1 day
-        },
-      },
-    },
-  ],
-  register: true, // Auto-register service worker
-  skipWaiting: true, // Skip waiting and activate new SW immediately
-  // disable: process.env.NODE_ENV === "development",
+  register: true,
+  cacheOnFrontendNav: true,
+  aggressiveFron: true,
 });
 
 const nextConfig: NextConfig = withPWA({
